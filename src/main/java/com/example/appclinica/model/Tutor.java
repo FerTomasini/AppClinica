@@ -1,14 +1,24 @@
 package com.example.appclinica.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
 
+@Entity
 public class Tutor {
 
+    @Id
     private Long id;
     private String nome;
     private LocalDate nascimento;
     private String email;
+    private String telefone;
     private String cpf;
+    private String identidade;
+    @OneToMany
+    @JoinColumn(name = "seuPet", referencedColumnName = "id", nullable = true)
     private Pet seuPet;
 
     private Endereco endereco;
@@ -62,5 +72,29 @@ public class Tutor {
 
     public void setSeuPet(Pet seuPet) {
         this.seuPet = seuPet;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getIdentidade() {
+        return identidade;
+    }
+
+    public void setIdentidade(String identidade) {
+        this.identidade = identidade;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }

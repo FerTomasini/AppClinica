@@ -1,14 +1,21 @@
 package com.example.appclinica.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
-
+import java.util.List;
+@Entity
 public class Pet {
-
+    @Id
     private Long id;
     private String nome;
     private LocalDate nascimento;
     private String raca;
     private double peso;
+    private String corPelagem;
+    private String especie;
+    private String genero;
 
     public Pet() {
     }
@@ -52,4 +59,29 @@ public class Pet {
     public void setPeso(double peso) {
         this.peso = peso;
     }
+
+    public String getCorPelagem() {
+        return corPelagem;
+    }
+
+    public void setCorPelagem(String corPelagem) {
+        this.corPelagem = corPelagem;
+    }
+
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
 }

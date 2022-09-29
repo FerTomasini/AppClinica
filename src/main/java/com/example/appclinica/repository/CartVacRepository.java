@@ -1,9 +1,9 @@
 package com.example.appclinica.repository;
 
-import com.example.appclinica.model.Pet;
+import com.example.appclinica.model.CartVac;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PetRepository extends JpaRepository<Pet, Long> {
+public interface CartVacRepository extends JpaRepository<CartVac, Long> {
 }
