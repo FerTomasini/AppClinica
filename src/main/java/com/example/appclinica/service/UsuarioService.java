@@ -1,9 +1,8 @@
 package com.example.appclinica.service;
 
-
-import br.com.metaway.agendapessoal.exception.ValidacaoException;
-import br.com.metaway.agendapessoal.security.ETipo;
-import br.com.metaway.agendapessoal.security.Usuario;
+import com.example.appclinica.exception.ValidacaoException;
+import com.example.appclinica.security.ETipo;
+import com.example.appclinica.security.Usuario;
 import org.springframework.data.util.Pair;
 
 import java.util.List;
