@@ -18,11 +18,11 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/pessoa")
+@RequestMapping("/api/pet")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Api(tags = "Pessoas")
+@Api(tags = "Pets")
 public class PetController {
 
 	private final ObjectMapper objectMapper;
