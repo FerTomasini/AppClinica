@@ -1,64 +1,76 @@
 package com.example.appclinica.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
-
+@Entity
 public class Historico {
 
-    private List<String> examesImagem;
-    private List<String> examesLab;
-    private List<String> atendimentos;
-    private List<String> diagnosticos;
-    private List<String> cirurgias;
-    private List<String> antiparasitariosEx;
+    @Id
+    private long id;
+    private String examesImagem;
+    private String examesLab;
+    private String atendimentos;
+    private String diagnosticos;
+    private String cirurgias;
+    private String antiparasitariosEx;
 
     public Historico() {
     }
 
-    public List<String> getExamesImagem() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getExamesImagem() {
         return examesImagem;
     }
 
-    public void setExamesImagem(List<String> examesImagem) {
+    public void setExamesImagem(String examesImagem) {
         this.examesImagem = examesImagem;
     }
 
-    public List<String> getExamesLab() {
+    public String getExamesLab() {
         return examesLab;
     }
 
-    public void setExamesLab(List<String> examesLab) {
+    public void setExamesLab(String examesLab) {
         this.examesLab = examesLab;
     }
 
-    public List<String> getAtendimentos() {
+    public String getAtendimentos() {
         return atendimentos;
     }
 
-    public void setAtendimentos(List<String> atendimentos) {
+    public void setAtendimentos(String atendimentos) {
         this.atendimentos = atendimentos;
     }
 
-    public List<String> getDiagnosticos() {
+    public String getDiagnosticos() {
         return diagnosticos;
     }
 
-    public void setDiagnosticos(List<String> diagnosticos) {
+    public void setDiagnosticos(String diagnosticos) {
         this.diagnosticos = diagnosticos;
     }
 
-    public List<String> getCirurgias() {
+    public String getCirurgias() {
         return cirurgias;
     }
 
-    public void setCirurgias(List<String> cirurgias) {
+    public void setCirurgias(String cirurgias) {
         this.cirurgias = cirurgias;
     }
 
-    public List<String> getAntiparasitariosEx() {
+    public String getAntiparasitariosEx() {
         return antiparasitariosEx;
     }
 
-    public void setAntiparasitariosEx(List<String> antiparasitariosEx) {
+    public void setAntiparasitariosEx(String antiparasitariosEx) {
         this.antiparasitariosEx = antiparasitariosEx;
     }
 }

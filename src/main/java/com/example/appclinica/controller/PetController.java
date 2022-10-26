@@ -6,8 +6,6 @@ import com.example.appclinica.model.Pet;
 import com.example.appclinica.response.Response;
 import com.example.appclinica.service.PetService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,6 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Api(tags = "Pets")
 public class PetController {
 
 	private final ObjectMapper objectMapper;
@@ -35,14 +32,12 @@ public class PetController {
 	}
 
 	@PostMapping("/listar")
-	@ApiOperation(value = "Busca tutores")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<List<Pet>> pesquisar(@RequestBody TermoBuscaPet busca) {
 		return ResponseEntity.ok(petService.pesquisar(busca.getNome()));
 	}
 
 	@GetMapping("/buscar/{id}")
-	@ApiOperation(value = "Retorna os detalhes do pet")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Response<Pet>> buscar(@PathVariable("id") Long id) {
 		try {
@@ -55,7 +50,6 @@ public class PetController {
 	}
 
 	@PostMapping("/salvar")
-	@ApiOperation(value = "Cria ou atualiza o cadastro")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<Response<Pet>> salvar(@RequestBody Pet pet) {
 		try {
@@ -66,7 +60,6 @@ public class PetController {
 	}
 
 	@DeleteMapping("/remover/{id}")
-	@ApiOperation(value = "Remove o cadastro")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<Response<Boolean>> remove(@PathVariable("id") Long id) {
 		try {

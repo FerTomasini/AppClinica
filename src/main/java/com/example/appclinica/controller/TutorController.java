@@ -7,8 +7,6 @@ import com.example.appclinica.model.Tutor;
 import com.example.appclinica.response.Response;
 import com.example.appclinica.service.TutorService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,6 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Api(tags = "Tutores")
 public class TutorController {
 
 	private final ObjectMapper objectMapper;
@@ -36,14 +33,12 @@ public class TutorController {
 	}
 
 	@PostMapping("/listar")
-	@ApiOperation(value = "Busca tutores")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<List<Tutor>> pesquisar(@RequestBody TermoBuscaTutor busca) {
 		return ResponseEntity.ok(tutorService.pesquisar(busca.getNome()));
 	}
 
 	@GetMapping("/buscar/{id}")
-	@ApiOperation(value = "Retorna os detalhes do tutor")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Response<Tutor>> buscar(@PathVariable("id") Long id) {
 		try {
@@ -56,7 +51,6 @@ public class TutorController {
 	}
 
 	@PostMapping("/salvar")
-	@ApiOperation(value = "Cria ou atualiza o cadastro")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<Response<Tutor>> salvar(@RequestBody Tutor tutor) {
 		try {
@@ -67,7 +61,6 @@ public class TutorController {
 	}
 
 	@DeleteMapping("/remover/{id}")
-	@ApiOperation(value = "Remove o cadastro")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<Response<Boolean>> remove(@PathVariable("id") Long id) {
 		try {

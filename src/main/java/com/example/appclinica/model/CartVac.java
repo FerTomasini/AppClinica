@@ -1,10 +1,16 @@
 package com.example.appclinica.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
-import java.util.Date;
-
+@Entity
 public class CartVac {
-
+    @Id
+    private long id;
+    @ManyToOne
+    @JoinColumn(name = "nome_id")
     private Pet nome;
     private String nomeVac;
     private LocalDate dataVacina;

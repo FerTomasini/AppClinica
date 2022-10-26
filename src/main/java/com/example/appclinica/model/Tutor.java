@@ -1,9 +1,6 @@
 package com.example.appclinica.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -17,10 +14,12 @@ public class Tutor {
     private String telefone;
     private String cpf;
     private String identidade;
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "seuPet", referencedColumnName = "id", nullable = true)
     private Pet seuPet;
 
+    @ManyToOne
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
     public Tutor() {

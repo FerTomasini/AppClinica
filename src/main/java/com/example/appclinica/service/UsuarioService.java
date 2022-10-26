@@ -4,9 +4,10 @@ import com.example.appclinica.exception.ValidacaoException;
 import com.example.appclinica.security.ETipo;
 import com.example.appclinica.security.Usuario;
 import org.springframework.data.util.Pair;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public interface UsuarioService {
 
 	Usuario buscar(String username);

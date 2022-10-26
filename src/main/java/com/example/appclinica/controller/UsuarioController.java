@@ -8,8 +8,6 @@ import com.example.appclinica.security.Usuario;
 import com.example.appclinica.service.UsuarioService;
 import com.example.appclinica.service.util.JsonHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,7 +26,6 @@ import java.util.Objects;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Api(tags = "Usuários")
 public class UsuarioController {
 
 	private final ObjectMapper objectMapper;
@@ -41,14 +38,12 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/listar")
-	@ApiOperation(value = "Retorna a lista de usuários")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<Usuario>> listar(@RequestBody String query) {
 		return ResponseEntity.ok(usuarioService.pesquisar(JsonHelper.fromJson(objectMapper, query, String.class)));
 	}
 
 	@GetMapping("/buscar/{id}")
-	@ApiOperation(value = "Retorna os detalhes do usuário")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Response<UsuarioTiposResponse>> buscar(@PathVariable("id") Long id) {
 		try {
@@ -63,7 +58,6 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/salvar")
-	@ApiOperation(value = "Cria ou atualiza o cadastro")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Response<UsuarioTiposResponse>> salvar(@RequestBody UsuarioTiposResponse usuarioTipos) {
 		try {
@@ -80,7 +74,6 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/atualizar")
-	@ApiOperation(value = "Atualiza cadastro do próprio usuário logado.")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<Response<Usuario>> atualizar(@RequestBody Usuario usuario) {
 		try {

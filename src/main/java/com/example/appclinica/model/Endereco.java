@@ -1,7 +1,11 @@
 package com.example.appclinica.model;
 
-public class Endereco {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Endereco {
+    @Id
     private Long id;
     private String logradouro;
     private int numero;
