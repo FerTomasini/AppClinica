@@ -6,6 +6,8 @@ import com.example.appclinica.model.Pet;
 import com.example.appclinica.response.Response;
 import com.example.appclinica.service.PetService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,6 @@ import java.util.List;
 public class PetController {
 
 	private final ObjectMapper objectMapper;
-
 	private final PetService petService;
 
 	public PetController(ObjectMapper objectMapper, PetService petService) {
