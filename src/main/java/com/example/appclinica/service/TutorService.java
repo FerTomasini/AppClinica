@@ -3,9 +3,9 @@ package com.example.appclinica.service;
 import com.example.appclinica.exception.ValidacaoException;
 import com.example.appclinica.model.Tutor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Component
 public interface TutorService {
 

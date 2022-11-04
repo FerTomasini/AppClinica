@@ -3,7 +3,7 @@ package com.example.appclinica.security;
 
 import com.example.appclinica.security.jwt.AuthEntryPoint;
 import com.example.appclinica.security.jwt.AuthTokenFilter;
-import com.example.appclinica.service.UserDetailsServiceImpl;
+import com.example.appclinica.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -72,10 +72,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable()
-		    .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-		    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-		    .authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
-		    .anyRequest().authenticated();
+				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
+				.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}

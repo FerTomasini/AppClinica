@@ -24,13 +24,9 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class PetController {
 
-	private final ObjectMapper objectMapper;
-	private final PetService petService;
-
-	public PetController(ObjectMapper objectMapper, PetService petService) {
-		this.objectMapper = objectMapper;
-		this.petService = petService;
-	}
+	@Autowired
+	ObjectMapper objectMapper;
+	PetService petService;
 
 	@PostMapping("/listar")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")

@@ -1,4 +1,4 @@
-package com.example.appclinica.service;
+package com.example.appclinica.service.impl;
 
 import com.example.appclinica.repository.UsuarioRepository;
 import com.example.appclinica.repository.UsuarioTipoRepository;

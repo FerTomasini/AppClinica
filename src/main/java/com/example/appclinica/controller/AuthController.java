@@ -4,6 +4,8 @@ import com.example.appclinica.response.AuthResponse;
 import com.example.appclinica.security.UserAuth;
 import com.example.appclinica.security.jwt.Utils;
 import com.example.appclinica.security.request.LoginRequest;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Api(tags = "Autorização")
 public class AuthController {
 
 	private final AuthenticationManager authManager;
@@ -35,6 +38,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/login")
+	@ApiOperation(value = "Retorna o login do usuário")
 	public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
 		Authentication authentication = authManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));

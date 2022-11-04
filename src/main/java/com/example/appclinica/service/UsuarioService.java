@@ -5,9 +5,10 @@ import com.example.appclinica.security.ETipo;
 import com.example.appclinica.security.Usuario;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Component
+@Service
 public interface UsuarioService {
 
 	Usuario buscar(String username);
