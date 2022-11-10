@@ -6,8 +6,7 @@ import com.example.appclinica.model.Pet;
 import com.example.appclinica.response.Response;
 import com.example.appclinica.service.PetService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -22,11 +21,16 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Api(tags = "Animais")
 public class PetController {
 
-	@Autowired
-	ObjectMapper objectMapper;
-	PetService petService;
+	private final ObjectMapper objectMapper;
+	private final PetService petService;
+
+	public PetController(ObjectMapper objectMapper, PetService petService) {
+		this.objectMapper = objectMapper;
+		this.petService = petService;
+	}
 
 	@PostMapping("/listar")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")

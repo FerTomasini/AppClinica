@@ -58,7 +58,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             }
             return usuarioRepository.save(usuario);
         } else {
-            throw new ValidacaoException("Nome de usuÃ¡rio jÃ¡ utilizado.");
+            throw new ValidacaoException("Nome de usuário já utilizado.");
         }
     }
 

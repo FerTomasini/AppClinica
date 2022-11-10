@@ -67,7 +67,7 @@ public class TutorController {
 
 	@DeleteMapping("/remover/{id}")
 	@ApiOperation(value = "Remove o cadastro")
-	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Response<Boolean>> remove(@PathVariable("id") Long id) {
 		try {
 			tutorService.remover(id);
