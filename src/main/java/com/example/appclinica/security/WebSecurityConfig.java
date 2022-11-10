@@ -3,7 +3,7 @@ package com.example.appclinica.security;
 
 import com.example.appclinica.security.jwt.AuthEntryPoint;
 import com.example.appclinica.security.jwt.AuthTokenFilter;
-import com.example.appclinica.service.impl.UserDetailsServiceImpl;
+import com.example.appclinica.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

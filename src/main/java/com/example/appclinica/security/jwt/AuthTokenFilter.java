@@ -1,6 +1,6 @@
 package com.example.appclinica.security.jwt;
 
-import com.example.appclinica.service.impl.UserDetailsServiceImpl;
+import com.example.appclinica.service.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

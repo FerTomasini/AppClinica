@@ -48,14 +48,12 @@ public class AuthController {
 
 		UserAuth userAuth = (UserAuth) authentication.getPrincipal();
 		List<String> tipos = userAuth.getAuthorities().stream()
-		                             .map(GrantedAuthority::getAuthority)
-		                             .collect(Collectors.toList());
+				.map(GrantedAuthority::getAuthority)
+				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(new AuthResponse(jwt,
-		                                          userAuth.getId(),
-		                                          userAuth.getUsername(),
-		                                          tipos));
+				userAuth.getId(),
+				userAuth.getUsername(),
+				tipos));
 	}
 }
-
-

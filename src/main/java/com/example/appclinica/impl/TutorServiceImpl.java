@@ -1,4 +1,4 @@
-package com.example.appclinica.service.impl;
+package com.example.appclinica.impl;
 
 import com.example.appclinica.exception.ValidacaoException;
 import com.example.appclinica.model.Tutor;

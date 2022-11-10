@@ -1,9 +1,10 @@
-package com.example.appclinica.service.impl;
+package com.example.appclinica.service;
 
 import com.example.appclinica.repository.UsuarioRepository;
 import com.example.appclinica.repository.UsuarioTipoRepository;
 import com.example.appclinica.security.UserAuth;
 import com.example.appclinica.security.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
