@@ -1,21 +1,54 @@
 package com.example.appclinica.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 @Entity
+@Table(name = "pet")
 public class Pet {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PET_SEQ")
+    @SequenceGenerator(name = "PET_SEQ", sequenceName = "PET_SEQ", allocationSize = 1)
     private Long id;
+    @Column(name = "nome")
+    @NotEmpty(message = "O campo nome não pode ser vazio.")
     private String nome;
+    @Column(name = "data_nascimento")
+    @NotBlank(message = "O campo data nascimento não pode ficar em branco.")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate nascimento;
+    @NotBlank(message = "O campo data nascimento não pode ficar em branco.")
     private String raca;
+    @NotBlank(message = "O campo data nascimento não pode ficar em branco.")
     private double peso;
+    @NotBlank(message = "O campo data nascimento não pode ficar em branco.")
     private String corPelagem;
+    @NotBlank(message = "O campo data nascimento não pode ficar em branco. Ex de preenchimento: Canino ou Felino")
     private String especie;
+    @NotBlank(message = "O campo data nascimento não pode ficar em branco.")
     private String genero;
 
+    @OneToOne
+    @JoinColumn(name = "carteirinha_id")
+    private CartVac carteirinha;
+
     public Pet() {
+    }
+
+    public Pet(Long id, String nome, LocalDate nascimento, String raca, double peso, String corPelagem, String especie,
+               String genero, CartVac carteirinha) {
+        this.id = id;
+        this.nome = nome;
+        this.nascimento = nascimento;
+        this.raca = raca;
+        this.peso = peso;
+        this.corPelagem = corPelagem;
+        this.especie = especie;
+        this.genero = genero;
+        this.carteirinha = carteirinha;
     }
 
     public Long getId() {
@@ -81,5 +114,4 @@ public class Pet {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-
 }

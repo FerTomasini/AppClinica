@@ -20,10 +20,6 @@ public class CartVacServiceImpl implements CartVacService {
         this.cartaoRepository = cartaoRepository;
     }
 
-    @Override
-    public List<CartVac> pesquisar(String query) {
-        return cartaoRepository.findByNomeContainsIgnoreCase(query);
-    }
 
     @Override
     public CartVac buscar(Long id) throws ValidacaoException {

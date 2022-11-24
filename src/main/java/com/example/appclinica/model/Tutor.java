@@ -1,28 +1,71 @@
 package com.example.appclinica.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "tutor")
 public class Tutor {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TUTOR_SEQ")
+    @SequenceGenerator(name = "TUTOR_SEQ", sequenceName = "TUTOR_SEQ", allocationSize = 1)
     private Long id;
-    private String nome;
-    private LocalDate nascimento;
-    private String email;
-    private String telefone;
-    private String cpf;
-    private String identidade;
-    @ManyToOne
-    @JoinColumn(name = "seuPet", referencedColumnName = "id", nullable = true)
-    private Pet seuPet;
 
-    @ManyToOne
-    @JoinColumn(name = "endereco_id")
+    @Column(name = "nome")
+    @NotEmpty(message = "O campo nome não pode ser vazio.")
+    private String nome;
+
+    @Column(name = "data_nascimento")
+    @NotBlank(message = "O campo data nascimento não pode ficar em branco.")
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate nascimento;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "tutor_endereco",
+            joinColumns = { @JoinColumn(name = "tutor_id") },
+            inverseJoinColumns = { @JoinColumn(name = "endereco_id") })
     private Endereco endereco;
 
+    @NotBlank(message = "O campo email não pode ficar em branco.")
+    @Email(message = "O campo email está com valor inválido.")
+    private String email;
+
+    @Pattern(regexp = "^\\(0?[1-9]{2}\\) (?:[2-8]|9[1-9])\\d{5}-\\d{4}$", message = "O campo telefone precisa estar no formato (DDD) XXXXX-XXXX.")
+    private String telefone;
+    @Column(name = "cpf")
+    @NotBlank
+    @CPF
+    private String cpf;
+    private String identidade;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "tutor_pet",
+            joinColumns = { @JoinColumn(name = "tutor_id") },
+            inverseJoinColumns = { @JoinColumn(name = "pet_id") })
+    private Pet pet;
+
     public Tutor() {
+    }
+
+    public Tutor(Long id, String nome, LocalDate nascimento, Endereco endereco, String email, String telefone,
+                 String cpf, String identidade, Pet pet) {
+        this.id = id;
+        this.nome = nome;
+        this.nascimento = nascimento;
+        this.endereco = endereco;
+        this.email = email;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.identidade = identidade;
+        this.pet = pet;
     }
 
     public Long getId() {
@@ -65,12 +108,12 @@ public class Tutor {
         this.cpf = cpf;
     }
 
-    public Pet getSeuPet() {
-        return seuPet;
+    public Pet getPet() {
+        return pet;
     }
 
-    public void setSeuPet(Pet seuPet) {
-        this.seuPet = seuPet;
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 
     public String getTelefone() {

@@ -4,7 +4,6 @@ import com.example.appclinica.exception.ValidacaoException;
 import com.example.appclinica.model.CartVac;
 import com.example.appclinica.response.Response;
 import com.example.appclinica.service.CartVacService;
-import com.example.appclinica.service.util.JsonHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/carteirinha")
@@ -35,12 +33,6 @@ public class CartVacController {
     }
 
 
-    @PostMapping("/listar")
-    @ApiOperation(value = "Retorna a lista de carteirinhas")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<CartVac>> listar(@RequestBody String query) {
-        return ResponseEntity.ok(cartVacService.pesquisar(JsonHelper.fromJson(objectMapper, query, String.class)));
-    }
 
     @GetMapping("/buscar/{id}")
     @ApiOperation(value = "Retorna os detalhes da carteirinha")

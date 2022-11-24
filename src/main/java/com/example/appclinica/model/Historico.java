@@ -1,13 +1,18 @@
 package com.example.appclinica.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 @Entity
+@Table(name = "historico")
 public class Historico {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HIST_SEQ")
+    @SequenceGenerator(name = "HIST_SEQ", sequenceName = "HIST_SEQ", allocationSize = 1)
     private long id;
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
     private String examesImagem;
     private String examesLab;
     private String atendimentos;
@@ -16,6 +21,18 @@ public class Historico {
     private String antiparasitariosEx;
 
     public Historico() {
+    }
+
+    public Historico(long id, Pet pet, String examesImagem, String examesLab, String atendimentos, String diagnosticos,
+                     String cirurgias, String antiparasitariosEx) {
+        this.id = id;
+        this.pet = pet;
+        this.examesImagem = examesImagem;
+        this.examesLab = examesLab;
+        this.atendimentos = atendimentos;
+        this.diagnosticos = diagnosticos;
+        this.cirurgias = cirurgias;
+        this.antiparasitariosEx = antiparasitariosEx;
     }
 
     public long getId() {

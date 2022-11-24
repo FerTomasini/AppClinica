@@ -3,10 +3,12 @@ package com.example.appclinica.controller;
 import com.example.appclinica.controller.model.TermoBuscaPet;
 import com.example.appclinica.exception.ValidacaoException;
 import com.example.appclinica.model.Pet;
+import com.example.appclinica.repository.PetRepository;
 import com.example.appclinica.response.Response;
 import com.example.appclinica.service.PetService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,9 +30,12 @@ public class PetController {
 	private final ObjectMapper objectMapper;
 	private final PetService petService;
 
-	public PetController(ObjectMapper objectMapper, PetService petService) {
+	private final PetRepository petRepository;
+
+	public PetController(ObjectMapper objectMapper, PetService petService, PetRepository petRepository) {
 		this.objectMapper = objectMapper;
 		this.petService = petService;
+		this.petRepository = petRepository;
 	}
 
 	@PostMapping("/listar")
