@@ -35,7 +35,6 @@ public class TutorServiceImpl implements TutorService {
 	@Transactional
 	@Override
 	public Tutor salvar(@Valid Tutor tutor) {
-		tutor.setEndereco(this.enderecoRepository.save(tutor.getEndereco()));
 		return tutorRepository.save(tutor);
 	}
 
@@ -44,8 +43,8 @@ public class TutorServiceImpl implements TutorService {
 	public void remover(Long id) throws ValidacaoException {
 		Tutor tutor = buscar(id);
 		if (tutor != null) {
-			if (tutor.getEndereco() != null && tutor.getEndereco().getId() != null) {
-				enderecoRepository.delete(tutor.getEndereco());
+			if (tutor.getNome() != null && tutor.getId() != null) {
+				tutorRepository.delete(tutor);
 			}
 			tutorRepository.delete(tutor);
 		}

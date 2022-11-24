@@ -14,6 +14,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.StringUtils;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -39,6 +40,10 @@ public class AppClinicaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AppClinicaApplication.class, args);
+
+        BCryptPasswordEncoder b=new BCryptPasswordEncoder();
+        String str=b.encode("98765432");
+        System.out.println(str);
     }
 
     @Bean
