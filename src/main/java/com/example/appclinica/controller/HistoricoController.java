@@ -2,7 +2,9 @@ package com.example.appclinica.controller;
 
 import com.example.appclinica.exception.ValidacaoException;
 import com.example.appclinica.model.Historico;
+import com.example.appclinica.model.Pet;
 import com.example.appclinica.model.Tutor;
+import com.example.appclinica.repository.HistoricoRepository;
 import com.example.appclinica.response.Response;
 import com.example.appclinica.response.UsuarioTiposResponse;
 import com.example.appclinica.security.ETipo;
@@ -13,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.util.Pair;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,9 +38,27 @@ public class HistoricoController {
 
     private final HistoricoService historicoService;
 
-    public HistoricoController(ObjectMapper objectMapper, HistoricoService historicoService) {
+    private final HistoricoRepository historicoRepository;
+
+    public HistoricoController(ObjectMapper objectMapper, HistoricoService historicoService, HistoricoRepository historicoRepository) {
         this.objectMapper = objectMapper;
         this.historicoService = historicoService;
+        this.historicoRepository = historicoRepository;
+    }
+
+    @GetMapping("/historicos")
+    /*@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")*/
+    public ResponseEntity<List<Historico>> getAllHist() {
+        try {
+            List<Historico> historicos = new ArrayList<Historico>();
+            historicoRepository.findAll().forEach(historicos::add);
+            if (historicos.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(historicos, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/listar")

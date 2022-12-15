@@ -44,6 +44,22 @@ public class PetController {
 		return ResponseEntity.ok(petService.pesquisar(busca.getNome()));
 	}
 
+	@GetMapping("/pets")
+	/*@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")*/
+	public ResponseEntity<List<Pet>> getAllPets() {
+		try {
+			List<Pet> animais = new ArrayList<Pet>();
+			petRepository.findAll().forEach(animais::add);
+			if (animais.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<>(animais, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+
 	@GetMapping("/buscar/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Response<Pet>> buscar(@PathVariable("id") Long id) {

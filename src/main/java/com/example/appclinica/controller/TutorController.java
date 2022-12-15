@@ -1,6 +1,5 @@
 package com.example.appclinica.controller;
 
-
 import com.example.appclinica.controller.model.TermoBuscaTutor;
 import com.example.appclinica.exception.ValidacaoException;
 import com.example.appclinica.model.Tutor;

@@ -20,6 +20,10 @@ public class PetServiceImpl implements PetService {
     public List<Pet> pesquisar(String query) {
         return petRepository.findByNomeContainsOrUsernameContainsOrCpfContainsAllIgnoreCase(query);
     }
+    @Override
+    public List<Pet> getAllPets() {
+        return petRepository.findAll();
+    }
 
     @Override
     public Pet buscar(Long id) throws ValidacaoException {

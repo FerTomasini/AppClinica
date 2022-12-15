@@ -42,7 +42,7 @@ public class AppClinicaApplication {
         SpringApplication.run(AppClinicaApplication.class, args);
 
         BCryptPasswordEncoder b=new BCryptPasswordEncoder();
-        String str=b.encode("98765432");
+        String str=b.encode("12345678");
         System.out.println(str);
     }
 

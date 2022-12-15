@@ -31,15 +31,11 @@ public class Pet {
     @NotBlank(message = "O campo data nascimento não pode ficar em branco.")
     private String genero;
 
-    @OneToOne
-    @JoinColumn(name = "carteirinha_id")
-    private CartVac carteirinha;
-
     public Pet() {
     }
 
     public Pet(Long id, String nome, LocalDate nascimento, String raca, double peso, String corPelagem, String especie,
-               String genero, CartVac carteirinha) {
+               String genero) {
         this.id = id;
         this.nome = nome;
         this.nascimento = nascimento;
@@ -48,7 +44,6 @@ public class Pet {
         this.corPelagem = corPelagem;
         this.especie = especie;
         this.genero = genero;
-        this.carteirinha = carteirinha;
     }
 
     public Long getId() {

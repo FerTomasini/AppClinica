@@ -11,6 +11,8 @@ public interface PetService {
 
 	List<Pet> pesquisar(String query);
 
+	List<Pet> getAllPets();
+
 	Pet buscar(Long id) throws ValidacaoException;
 
 	Pet salvar(Pet pet);
