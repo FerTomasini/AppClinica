@@ -41,9 +41,7 @@ public class AppClinicaApplication {
     public static void main(String[] args) {
         SpringApplication.run(AppClinicaApplication.class, args);
 
-        BCryptPasswordEncoder b=new BCryptPasswordEncoder();
-        String str=b.encode("12345678");
-        System.out.println(str);
+
     }
 
     @Bean
